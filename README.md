@@ -17,6 +17,7 @@ luarocks install basexx
 ## Configuration
 
 ```
+export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/Cellar/lua/5.3.4_4/share/lua/5.3/?.lua;;"
 export JWT_SECRET=fofofo
 export JWT_SECRET_IS_BASE64_ENCODED=false
 ```
@@ -25,7 +26,7 @@ export JWT_SECRET_IS_BASE64_ENCODED=false
 
 ```
 cd ethrpc-jwt-proxy
-openresty -c ~/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
+openresty -c $HOME/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 ```
 
 ## Test
