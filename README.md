@@ -7,15 +7,17 @@ It is based https://github.com/auth0/nginx-jwt with minor modifications to get t
 ## Setup on OSX
 
 ```
+git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
 brew install openresty/brew/openresty
 brew install lua
-opm get SkyLothar/lua-resty-jwt
+luarocks lua-resty-jwt
 luarocks install basexx
 ```
 
 ## Configuration
 
 ```
+export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/Cellar/lua/5.3.4_4/share/lua/5.3/?.lua;;"
 export JWT_SECRET=fofofo
 export JWT_SECRET_IS_BASE64_ENCODED=false
 ```
@@ -23,11 +25,18 @@ export JWT_SECRET_IS_BASE64_ENCODED=false
 ## Launch
 
 ```
-openresty -c nginx.conf -g 'daemon off;'
+cd ethrpc-jwt-proxy
+openresty -c $HOME/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 ```
 
 ## Test
 
 ```
 curl --request GET --url 'http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w' -i
+```
+
+## Attach
+
+```
+geth attach http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w
 ```
