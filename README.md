@@ -7,10 +7,11 @@ It is based https://github.com/auth0/nginx-jwt with minor modifications to get t
 ## Setup on Ubuntu
 
 ```
+git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
 sudo add-apt-repository ppa:openresty/ppa
 sudo apt-get update
 sudo apt-get install openresty luarocks
-luarocks lua-resty-jwt
+luarocks install lua-resty-jwt
 luarocks install basexx
 ```
 
@@ -20,7 +21,7 @@ luarocks install basexx
 git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
 brew install openresty/brew/openresty
 brew install lua
-luarocks lua-resty-jwt
+luarocks install lua-resty-jwt
 luarocks install basexx
 ```
 
