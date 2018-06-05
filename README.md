@@ -33,3 +33,9 @@ openresty -c ~/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 ```
 curl --request GET --url 'http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w' -i
 ```
+
+## Attach
+
+```
+geth attach http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w
+```
