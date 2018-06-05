@@ -10,7 +10,7 @@ It is based https://github.com/auth0/nginx-jwt with minor modifications to get t
 git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
 brew install openresty/brew/openresty
 brew install lua
-opm get SkyLothar/lua-resty-jwt
+luarocks lua-resty-jwt
 luarocks install basexx
 ```
 
