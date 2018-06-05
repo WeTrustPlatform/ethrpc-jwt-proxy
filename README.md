@@ -4,6 +4,16 @@ ethrpc-jwt-proxy is an HTTP proxy that restrict access to the RPC interface of e
 
 It is based https://github.com/auth0/nginx-jwt with minor modifications to get the JWT from the query string
 
+## Setup on Ubuntu
+
+```
+sudo add-apt-repository ppa:openresty/ppa
+sudo apt-get update
+sudo apt-get install openresty luarocks
+luarocks lua-resty-jwt
+luarocks install basexx
+```
+
 ## Setup on OSX
 
 ```
