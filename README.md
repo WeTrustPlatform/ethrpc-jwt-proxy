@@ -94,3 +94,15 @@ Generate a token on https://jwt.io/ using `RS256` and your private key, then att
 ```
 geth attach http://localhost:8088/<your jwt here>
 ```
+
+## Payload validation
+
+You can check the payload claims this way in nginx.conf:
+
+```
+jwt.auth({
+    aud="http://chainz%-node%-rinkeby.centralus.cloudapp.azure.com",
+})
+```
+
+Strings must follow [lua pattern](https://www.lua.org/pil/20.2.html) escaping convention.
