@@ -25,11 +25,21 @@ luarocks install lua-resty-jwt
 luarocks install basexx
 ```
 
+## Generate the key pair
+
+```
+ssh-keygen -t rsa -b 4096 -f jwtRS256.key
+# Don't add passphrase
+openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
+cat jwtRS256.key
+cat jwtRS256.key.pub
+```
+
 ## Configuration
 
 ```
 export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/Cellar/lua/5.3.4_4/share/lua/5.3/?.lua;;"
-export JWT_SECRET=fofofo
+export JWT_SECRET=`cat jwtRS256.key.pub`
 export JWT_SECRET_IS_BASE64_ENCODED=false
 ```
 
@@ -42,12 +52,8 @@ openresty -c $HOME/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 
 ## Test
 
-```
-curl --request GET --url 'http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w' -i
-```
-
-## Attach
+Generate a token on https://jwt.io/ using RS256 and your private key, then attach geth like this:
 
 ```
-geth attach http://localhost:8088/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJzYWxlcyIsIm1hcmtldGluZyJdfQ.jTlvWuv2mhjD8wLy7XZB0x41E71WCUBi6xhAEEz_M-w
+geth attach http://localhost:8088/<your jwt here>
 ```
