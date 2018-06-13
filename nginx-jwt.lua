@@ -1,11 +1,12 @@
 local jwt = require "resty.jwt"
 local cjson = require "cjson"
 local basexx = require "basexx"
-local secret = os.getenv("JWT_SECRET")
+local config = require "config"
+local secret = config.secret
 
 assert(secret ~= nil, "Environment variable JWT_SECRET not set")
 
-if os.getenv("JWT_SECRET_IS_BASE64_ENCODED") == 'true' then
+if config.is_base64_encoded then
     -- convert from URL-safe Base64 to Base64
     local r = #secret % 4
     if r == 2 then
@@ -22,6 +23,10 @@ end
 
 local M = {}
 
+function M.set_alg_whitelist(whitelist)
+    jwt:set_alg_whitelist(whitelist)
+end
+
 function M.auth(claim_specs)
     -- get JWT from the query string
     uri = ngx.var.request_uri
@@ -36,7 +41,6 @@ function M.auth(claim_specs)
     ngx.log(ngx.INFO, "Token: " .. token)
 
     -- require valid JWT
-    jwt:set_alg_whitelist({RS256=1})
     local jwt_obj = jwt:verify(secret, token, nil)
     if jwt_obj.verified == false then
         ngx.log(ngx.WARN, "Invalid token: ".. jwt_obj.reason)
