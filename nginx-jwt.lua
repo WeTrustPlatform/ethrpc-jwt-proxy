@@ -36,6 +36,7 @@ function M.auth(claim_specs)
     ngx.log(ngx.INFO, "Token: " .. token)
 
     -- require valid JWT
+    jwt:set_alg_whitelist({RS256=1})
     local jwt_obj = jwt:verify(secret, token, nil)
     if jwt_obj.verified == false then
         ngx.log(ngx.WARN, "Invalid token: ".. jwt_obj.reason)
