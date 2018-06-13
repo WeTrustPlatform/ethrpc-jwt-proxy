@@ -46,13 +46,12 @@ export JWT_SECRET_IS_BASE64_ENCODED=false
 ## Launch
 
 ```
-cd ethrpc-jwt-proxy
 openresty -c $HOME/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 ```
 
 ## Test
 
-Generate a token on https://jwt.io/ using RS256 and your private key, then attach geth like this:
+Generate a token on https://jwt.io/ using `RS256` and your private key, then attach geth like this:
 
 ```
 geth attach http://localhost:8088/<your jwt here>
