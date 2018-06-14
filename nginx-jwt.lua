@@ -23,10 +23,6 @@ end
 
 local M = {}
 
-function M.set_alg_whitelist(whitelist)
-    jwt:set_alg_whitelist(whitelist)
-end
-
 function M.auth(claim_specs)
     -- get JWT from the query string
     uri = ngx.var.request_uri
@@ -41,6 +37,7 @@ function M.auth(claim_specs)
     ngx.log(ngx.INFO, "Token: " .. token)
 
     -- require valid JWT
+    jwt:set_alg_whitelist(config.alg_whitelist)
     local jwt_obj = jwt:verify(secret, token, nil)
     if jwt_obj.verified == false then
         ngx.log(ngx.WARN, "Invalid token: ".. jwt_obj.reason)
