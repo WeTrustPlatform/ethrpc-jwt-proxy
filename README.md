@@ -7,7 +7,7 @@ It is based https://github.com/auth0/nginx-jwt with minor modifications to get t
 ## Setup on Ubuntu
 
 ```
-git clone http://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
+git clone https://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
 sudo add-apt-repository ppa:openresty/ppa
 sudo apt-get update
 sudo apt-get install openresty luarocks
@@ -19,7 +19,7 @@ export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;"
 ## Setup on OSX
 
 ```
-git clone http://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
+git clone https://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
 brew install openresty/brew/openresty
 brew install lua
 luarocks install lua-resty-jwt
@@ -104,3 +104,6 @@ jwt.auth({
 ```
 
 Strings must follow [lua pattern](https://www.lua.org/pil/20.2.html) escaping convention.
+
+## License
+[BSD-3-Clause](https://github.com/WeTrustPlatform/ethrpc-jwt-proxy/blob/develop/LICENSE) &copy; WeTrustPlatform
