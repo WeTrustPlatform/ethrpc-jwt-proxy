@@ -7,22 +7,24 @@ It is based https://github.com/auth0/nginx-jwt with minor modifications to get t
 ## Setup on Ubuntu
 
 ```
-git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
+git clone http://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
 sudo add-apt-repository ppa:openresty/ppa
 sudo apt-get update
 sudo apt-get install openresty luarocks
-luarocks install lua-resty-jwt
-luarocks install basexx
+sudo luarocks install lua-resty-jwt
+sudo luarocks install basexx
+export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;"
 ```
 
 ## Setup on OSX
 
 ```
-git clone git@github.com:WeTrustPlatform/ethrpc-jwt-proxy.git
+git clone http://github.com/WeTrustPlatform/ethrpc-jwt-proxy.git
 brew install openresty/brew/openresty
 brew install lua
 luarocks install lua-resty-jwt
 luarocks install basexx
+export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/Cellar/lua/5.3.4_4/share/lua/5.3/?.lua;;"
 ```
 
 ## Generate the key pair
@@ -36,10 +38,6 @@ cat jwtRS256.key.pub
 ```
 
 ## Configuration
-
-```
-export LUA_PATH="$HOME/ethrpc-jwt-proxy/?.lua;/usr/local/Cellar/lua/5.3.4_4/share/lua/5.3/?.lua;;"
-```
 
 Copy your public key in config.lua. For example:
 
@@ -92,7 +90,7 @@ LUA_PATH=/path/to/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;
 Generate a token on https://jwt.io/ using `RS256` and your private key, then attach geth like this:
 
 ```
-geth attach http://localhost:8088/<your jwt here>
+geth attach http://localhost:8089/<your jwt here>
 ```
 
 ## Payload validation
