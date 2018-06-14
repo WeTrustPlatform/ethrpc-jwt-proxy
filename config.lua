@@ -1,5 +1,5 @@
 return {
-  -- a list of supported algorythms
+  -- a list of supported algorithms
   alg_whitelist = {RS256=1},
   -- shared secret or public key
   secret = "",

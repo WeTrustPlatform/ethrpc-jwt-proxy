@@ -4,7 +4,7 @@ local basexx = require "basexx"
 local config = require "config"
 local secret = config.secret
 
-assert(secret ~= nil, "Environment variable JWT_SECRET not set")
+assert(secret ~= nil, "secret not set")
 
 if config.is_base64_encoded then
     -- convert from URL-safe Base64 to Base64
