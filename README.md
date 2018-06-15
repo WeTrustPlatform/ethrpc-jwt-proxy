@@ -64,27 +64,6 @@ QYY7JmCMTdzONy5HDx0hUiMCAwEAAQ==
 openresty -c $HOME/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
 ```
 
-## Example systemd unit
-
-```
-[Unit]
-Description=Proxy
-
-[Service]
-EnvironmentFile=/root/env
-Type=simple
-ExecStart=/usr/bin/openresty -c /home/wetrustroot/ethrpc-jwt-proxy/nginx.conf -g 'daemon off;'
-
-[Install]
-WantedBy=default.target
-```
-
-With env file:
-
-```
-LUA_PATH=/path/to/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;
-```
-
 ## Test
 
 Generate a token on https://jwt.io/ using `RS256` and your private key, then attach geth like this:
