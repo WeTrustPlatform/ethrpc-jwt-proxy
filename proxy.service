@@ -5,10 +5,10 @@ After=network.target
 [Service]
 Type=forking
 PIDFile=/usr/local/openresty/nginx/logs/nginx.pid
-Environment=LUA_PATH=/path/to/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;
-ExecStartPre=/usr/local/openresty/nginx/sbin/nginx -c /path/to/ethrpc-jwt-proxy/nginx.conf -t -q -g 'daemon on; master_process on;'
-ExecStart=/usr/local/openresty/nginx/sbin/nginx -c /path/to/ethrpc-jwt-proxy/nginx.conf -g 'daemon on; master_process on;'
-ExecReload=/usr/local/openresty/nginx/sbin/nginx -c /path/to/ethrpc-jwt-proxy/nginx.conf -g 'daemon on; master_process on;' -s reload
+Environment=LUA_PATH=/home/ethproxy/ethrpc-jwt-proxy/?.lua;/usr/local/share/lua/5.1/?.lua;;
+ExecStartPre=/usr/local/openresty/nginx/sbin/nginx -c /home/ethproxy/ethrpc-jwt-proxy/nginx.conf -t -q -g 'daemon on; master_process on;'
+ExecStart=/usr/local/openresty/nginx/sbin/nginx -c /home/ethproxy/ethrpc-jwt-proxy/nginx.conf -g 'daemon on; master_process on;'
+ExecReload=/usr/local/openresty/nginx/sbin/nginx -c /home/ethproxy/ethrpc-jwt-proxy/nginx.conf -g 'daemon on; master_process on;' -s reload
 ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /usr/local/openresty/nginx/logs/nginx.pid
 TimeoutStopSec=5
 KillMode=mixed
